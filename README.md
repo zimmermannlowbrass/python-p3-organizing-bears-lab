@@ -33,17 +33,18 @@ the file structure and read the comments to understand what each file is used
 for:
 
 ```txt
+├── __init__.py        # designates "python-p3-organizing-bears-lab" as package
 ├── Pipfile
 ├── Pipfile.lock
 ├── README.md
 ├── lib
-    ├── __init__.py    # designates "lib" to be a package
+    ├── __init__.py    # designates "lib" as package
 │   ├── create.sql     # where you CREATE your schema
 │   ├── insert.sql     # where you INSERT your data
 │   ├── seed.sql       # data for in-memory test database
 │   ├── sql_queries.py # where you write your SELECT queries
 └── testing            # all the tests
-    ├── __init__.py    # designates "testing" to be a package
+    ├── __init__.py    # designates "testing" as package
     ├── create_test.py # this tests your create.sql file
     ├── insert_test.py # this tests your insert.sql file
     ├── select_test.py # this tests the queries you write in sql_queries.py
@@ -59,15 +60,14 @@ module more in the lessons to come.
 Let's briefly go over what is happening in setup blocks that our tests
 will be using.
 
-```ruby
-let(:db) do
-  SQLite3::Database.new(':memory:')
-end
+```py
+connection = sqlite3.connect(":memory:")
 
-before do
-  sql = File.read("lib/create.sql")
-  db.execute_batch(sql)
-end
+cursor = connection.cursor()
+
+create_file = open("lib/create.sql")
+create_as_string = create_file.read()
+cursor.executescript(create_as_string)
 ```
 
 Before each test, two important things happen.
@@ -111,7 +111,7 @@ how booleans are expressed in SQLite3.
 
 ## Part 2: `INSERT`
 
-Get the tests in `spec/insert_spec.rb` to pass by writing code in the
+Get the tests in `testing/insert_test_.py` to pass by writing code in the
 `lib/insert.sql` file. Input the following 8 bears (you can make up details
 about them, but make sex either 'M' or 'F'):
 
@@ -126,43 +126,33 @@ about them, but make sex either 'M' or 'F'):
 
 ## Part 3: `SELECT`
 
-Get the tests in `spec/select_spec.rb` to pass. Note that for this section, the
+Get the tests in `testing/select_test.py` to pass. Note that for this section, the
 database will be seeded with external data from the `lib/seed.sql` file so don't
 expect it to reflect the data you added above.
 
-**Note**: Since it's a Ruby file, write your queries as strings within methods
-in the `lib/sql_queries.rb` file. For example, to pass the first test, your Ruby
-method should look like this:
+**Note**: Since it's a Python file, write your queries as strings in the
+`global` scope in the `lib/sql_queries.py` file. For example, to pass the first
+test, your Python string should look like this:
 
-```rb
-def selects_all_female_bears_return_name_and_age
-  "SELECT bears.name, bears.age FROM bears WHERE sex='F';"
-end
-```
-
-You can also write the SQL strings in a Ruby [heredoc][heredoc] to help with
-formatting:
-
-```rb
-def selects_all_female_bears_return_name_and_age
-  <<-SQL
+```py
+select_all_female_bears_return_name_and_age = """
     SELECT
-      bears.name,
-      bears.age
-    FROM
-      bears
-    WHERE
-      sex='F';
-  SQL
-end
+        bears.name,
+        bears.age
+    FROM bears
+    WHERE sex='F';
+"""
 ```
-
-[heredoc]: https://www.rubyguides.com/2018/11/ruby-heredoc/
 
 You may be expected to use SQL statements that you're not particularly familiar
 with. Make sure you use the resources and Google to find the right statements.
 
 ## Resources
 
+- [SQL Tutorial - W3Schools](https://www.w3schools.com/sql/)
+- [Documentation - SQLite](https://www.sqlite.org/docs.html)
+- [SQLite - VisualStudio Marketplace](https://marketplace.visualstudio.com/items?itemName=alexcvzz.vscode-sqlite)
+- [SQLite Keywords - SQLite](https://www.sqlite.org/lang_keywords.html)
 - [SQL Datatypes](https://www.sqlite.org/datatype3.html)
 - [SQL GROUP BY](https://www.sqlite.org/lang_select.html#resultset)
+- [ZetCode sqlite3 Tutorial](http://zetcode.com/db/sqlite/)
