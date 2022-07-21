@@ -14,7 +14,7 @@
   manage relational databases and perform operations on the data that they contain.
 - **Relational Database**: a collection of data that is organized in
   well-defined relationships. The most common type of database.
-- **Query**: a statement used to select or operate on data in a database.
+- **Query**: a statement used to return data from a database.
 - **Table**: a collection of related data in a database. Composed of rows and
   columns. Similar to a class in Python.
 - **Row**: a single record in a database table. Each column represents an
