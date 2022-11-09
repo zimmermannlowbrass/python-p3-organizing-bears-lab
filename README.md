@@ -82,6 +82,8 @@ tests. You can learn more about in-memory databases
 Next, the test opens the `.sql` file, and runs the SQL code in that file in
 that in-memory database.
 
+***
+
 ## Part 1: `CREATE TABLE`
 
 Get the tests in `testing/create_test.py` to pass by writing code in the
@@ -109,6 +111,8 @@ Read about [SQLite3 Datatypes](https://www.sqlite.org/datatype3.html) to
 determine what your insert values are going to be. Be sure to pay attention to
 how booleans are expressed in SQLite3.
 
+***
+
 ## Part 2: `INSERT`
 
 Get the tests in `testing/insert_test_.py` to pass by writing code in the
@@ -123,6 +127,8 @@ about them, but make sex either 'M' or 'F'):
 - Grinch
 - Wendy
 - unnamed (refer back to how to create a record that doesn't have one value)
+
+***
 
 ## Part 3: `SELECT`
 
@@ -146,6 +152,8 @@ select_all_female_bears_return_name_and_age = """
 
 You may be expected to use SQL statements that you're not particularly familiar
 with. Make sure you use the resources and Google to find the right statements.
+
+***
 
 ## Resources
 
