@@ -54,15 +54,15 @@ class TestSelectAllBearsNamesAndOrdersInAlphabeticalOrder:
 class TestSelectAllBearsNamesAndAgesThatAreAliveAndOrderYoungestToOldest:
     '''select_all_bears_names_and_ages_that_are_alive_and_order_youngest_to_oldest in sql_queries.py'''
 
-    def selects_all_bears_names_and_ages_that_are_alive_and_orders_youngest_to_oldest(self):
+    def test_selects_all_bears_names_and_ages_that_are_alive_and_orders_youngest_to_oldest(self):
         '''selects all of the bears names and ages that are alive and order them from youngest to oldest.'''
         result = cursor.execute(select_all_bears_names_and_ages_that_are_alive_and_order_youngest_to_oldest)
         assert(result.fetchall() == [
-            ("Grinch",),
-            ("Tabitha",),
-            ("Wendy",),
-            ("Rowdy",),
-            ("Melissa",),
+            ("Grinch", 2),
+            ("Tabitha", 6),
+            ("Wendy", 6),
+            ("Rowdy", 10),
+            ("Melissa", 13),
         ])
 
 class TestSelectOldestBearAndReturnNameAndAge:
